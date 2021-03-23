@@ -8,24 +8,37 @@ const testEpisode = {
     image: "http://static.tvmaze.com/uploads/images/medium_landscape/67/168918.jpg",
     season: 1,
     number: 1,
-    summary: "",
+    summary: "Test Summary",
     runtime: 1
 }
 
 const testEpisodeWithoutImage = {
     //Add in approprate test data structure here.
+    id: 0,
+    name: "Test",
+    image: null,
+    season: 0,
+    number: 0,
+    summary: "Test Summary", 
+    runtime: 0
 }
 
 test("renders without error", () => {
-
+    render(<Episode episode={testEpisode} />);
 });
 
 test("renders the summury test passed as prop", ()=>{
-    
+    render(<Episode episode={testEpisode} />);
+    const summary = screen.queryByText("Test Summary");
+
+    expect(summary).toBeInTheDocument();
 });
 
 test("renders default image when image is not defined", ()=>{
+    render(<Episode episode={testEpisodeWithoutImage} />);
+    const img = screen.getByAltText('./stranger_things.png');
     
+    expect(img).toBeInTheDocument();
 })
 
 //Tasks
